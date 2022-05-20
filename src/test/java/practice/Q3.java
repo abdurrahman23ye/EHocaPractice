@@ -52,6 +52,7 @@ public class Q3 extends TestBase {
            action.moveToElement(del).click().perform();
            sayac++;
 
+
        }
 
     }
