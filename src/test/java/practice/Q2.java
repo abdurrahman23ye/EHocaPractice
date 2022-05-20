@@ -21,6 +21,34 @@ public class Q2 {
  */
 
     static WebDriver driver;
+
+
+    @BeforeClass
+    public static void setUp(){
+        WebDriverManager.chromedriver().setup();
+        driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
+
+    @Test
+    public void test1(){
+
+        driver.get("http://www.bestbuy.com");
+
+        Assert.assertTrue(driver.getTitle().contains("Best"));
+        WebElement abd=driver.findElement(By.xpath("//img[@alt='United States']"));
+
+        WebElement logo=driver.findElement(RelativeLocator.with(By.tagName("img")).above(abd));
+        WebElement mex=driver.findElement(RelativeLocator.with(By.tagName("img")).toLeftOf(abd));
+
+        Assert.assertTrue(logo.isDisplayed());
+        Assert.assertTrue(mex.isDisplayed());
+    }
+
+    /*
+    static WebDriver driver;
+
     @BeforeClass
     public static void setUp(){
         WebDriverManager.chromedriver().setup();
@@ -57,5 +85,7 @@ public class Q2 {
     public void kapat(){
         driver.close();
     }
+
+     */
 
 }

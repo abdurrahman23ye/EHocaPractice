@@ -22,50 +22,75 @@ public class Q1 {
     AfterClass ile kapatın
 
  */
-
     static WebDriver driver;
+    WebElement seachBox;
+    WebElement result;
+    String count;
+
+
     @BeforeClass
     public static void setUp(){
-       WebDriverManager.chromedriver().setup();
-       driver = new ChromeDriver();
-       driver.manage().window().maximize();
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        WebDriverManager.chromedriver().setup();
+         driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
     }
 
     @Before
-    public void testtenOnce(){
-        driver.get("http://www.google.com");
-    }
-    @Test
     public void test1(){
-    WebElement aramaKutusu = driver.findElement(By.name("q"));
-    //aramaKutusu.sendKeys("Green Mile" + Keys.ENTER)
-     aramaKutusu.sendKeys("Green Mile");
-     aramaKutusu.submit();
+        driver.get("http://www.google.com");
+       seachBox= driver.findElement(By.xpath("//input[@name='q']"));
     }
 
-    // 5 test , 1 AC, 1 BC,  1 A, 1 B -> 17 test calisir
+    @Test
+    public void tes1(){
+
+        seachBox.sendKeys("Green Mile"+Keys.ENTER);
+
+        result=driver.findElement(By.xpath("//div[@id='result-stats']"));
+
+        count=result.getText();
+
+        System.out.println("count = " + count.substring(0,count.length()-14));
+
+
+    }
 
     @Test
     public void test2(){
-        WebElement aramaKutusu = driver.findElement(By.name("q"));
-        aramaKutusu.sendKeys("Premonition" + Keys.ENTER);
+
+        seachBox.sendKeys("Premonition"+Keys.ENTER);
+
+        result=driver.findElement(By.xpath("//div[@id='result-stats']"));
+
+        count=result.getText();
+
+        System.out.println("count = " + count.substring(0,count.length()-14));
+
+
     }
 
     @Test
     public void test3(){
-        WebElement aramaKutusu = driver.findElement(By.name("q"));
-        aramaKutusu.sendKeys("The Curious Case of Benjamin Button" + Keys.ENTER);
-    }
 
-    @After
-    public void testtenSonra(){
-        WebElement sonucYazisiElementi = driver.findElement(By.xpath("//div[@id ='result-stats']"));
-        System.out.println("sonucYazisiElementi.getText() = " + sonucYazisiElementi.getText());
+        seachBox.sendKeys("The Curious Case of Benjamin Button"+Keys.ENTER);
+
+        result=driver.findElement(By.xpath("//div[@id='result-stats']"));
+
+        count=result.getText();
+
+        System.out.println("count = " + count.substring(0,count.length()-14));
+
+
     }
 
     @AfterClass
-    public static void tearDown(){
+    public static void TearDown(){
+
         driver.quit();
     }
+
+
+
 }
