@@ -22,5 +22,28 @@ public class Q5 {
       @AfterClass ta driver ı kapatalim
 
        */
+   static WebDriver driver;
+    @BeforeClass
+    public static void setUp(){
+        WebDriverManager.chromedriver().setup();
+        driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
+    @Test
+    public void test1(){
+        driver.get("https://www.google.com");
+        Assert.assertTrue(driver.getTitle().contains("Google"));}
+   @Test
+    public void test2(){
+        driver.get("https://www.amazon.com");
+        Assert.assertTrue(driver.getCurrentUrl().equals("www.amazon.com"));
+    }
+
+    @AfterClass
+    public static void tearDown(){
+        driver.quit();
+    }
+
 
 }
