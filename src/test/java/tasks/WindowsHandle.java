@@ -1,5 +1,6 @@
 package tasks;
 
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -29,13 +30,20 @@ public class WindowsHandle extends TestBase {
 
     @Test
     public void test1(){
-
+//  1."http://webdriveruniversity.com/" adresine gidin
         driver.get("http://webdriveruniversity.com/");
+
+     //   2."Login Portal" a kadar asagi inin
+      //  3."Login Portal" a tiklayin
+
         Actions action=new Actions(driver);
         action.sendKeys(Keys.PAGE_DOWN).perform();
         String ilk=driver.getWindowHandle();
+
+
         driver.findElement(By.xpath("//a[@href='Login-Portal/index.html']")).click();
 
+       //4.Diger window'a gecin
         Set<String> handles= driver.getWindowHandles();
         String ikinci="";
 
@@ -43,13 +51,29 @@ public class WindowsHandle extends TestBase {
 
         driver.switchTo().window(ikinci);
 
-        driver.findElement(By.xpath("//input")).sendKeys("asad");
-        driver.findElement(By.xpath("(//input)[2]")).sendKeys("asad");
+    /*    5."username" ve "password" kutularina deger yazdirin
+        6."login" butonuna basin
+
+     */
+
+        Faker fake=new Faker();
+
+        driver.findElement(By.xpath("//input")).sendKeys(fake.name().firstName());
+        driver.findElement(By.xpath("(//input)[2]")).sendKeys(fake.internet().password());
         driver.findElement(By.xpath("//button")).click();
 
+      /*  7.Popup'ta cikan yazinin "validation failed" oldugunu test edin
+        8.Ok diyerek Popup'i kapatin
+
+       */
+
         System.out.println(driver.switchTo().alert().getText());
-        driver.switchTo().alert().
-        accept();
+        driver.switchTo().alert().accept();
+
+        /*  9.Ilk sayfaya geri donun
+10.Ilk sayfaya donuldugunu test edin
+
+         */
         driver.switchTo().window(ilk);
 
         Assert.assertTrue(driver.getWindowHandle().equals(ilk));
