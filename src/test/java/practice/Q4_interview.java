@@ -1,13 +1,17 @@
 package practice;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Q4_interview {
+public class Q4_interview extends TestBase {
     /*
     ...Exercise4...
     https://www.teknosa.com/ adresine gidiniz
@@ -22,11 +26,10 @@ public class Q4_interview {
     driver i kapatiniz
 
 */
+       //Not : https://www.guru99.com/chrome-options-desiredcapabilities.html
 
-    //Not : https://www.guru99.com/chrome-options-desiredcapabilities.html
 
-    /*
-    note :
+    /*note :
     JavaScriptExecutor nedir?
     JavaScriptExecutor, JavaScript'i Selenium Web sürücüsü aracılığıyla çalıştırmaya yardımcı olan bir Arayüzdür.
     JavaScriptExecutor, javascript'i seçilen pencerede veya geçerli sayfada çalıştırmak için "executescript" ve "executeAsyncScript"
@@ -50,7 +53,9 @@ public class Q4_interview {
 
             Örnek:
             js.executeScript("window.scrollBy(0,1000)"); // Dikey olarak 1000 piksel aşağı kaydır
+
      */
+
 
     public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
@@ -61,6 +66,14 @@ public class Q4_interview {
 
         ChromeOptions op = new ChromeOptions();
         op.addArguments("disable-popup-blocking");
+
+        ChromeOptions options=new ChromeOptions();
+        Map<String, Object> prefs=new HashMap<String,Object>();
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+//1-Allow, 2-Block, 0-default
+        options.setExperimentalOption("prefs",prefs);
+
+
         WebElement searchArea = driver.findElement(By.xpath("//input[@id ='search-input']"));
         searchArea.sendKeys("oppo" + Keys.ENTER);
         System.out.println(driver.findElement(By.xpath("//div[@class ='plp-info']")).getText());
@@ -75,4 +88,6 @@ public class Q4_interview {
 
 
     }
+
+
 }
