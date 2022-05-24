@@ -35,11 +35,10 @@ public class ExplicitWait156 extends TestBase {
               enable.click();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text']")));
         String mes=driver.findElement(By.xpath("//p[@id='message']")).getText();
         System.out.println(mes);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
-        Thread.sleep(7000);
+        Thread.sleep(10000);
         Assert.assertTrue(mes.equals("It's enabled!"));
         Assert.assertTrue(driver.findElement(By.xpath("//input[@type='text']")).isEnabled());
     }
