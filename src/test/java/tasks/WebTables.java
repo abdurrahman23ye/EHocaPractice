@@ -72,6 +72,46 @@ public class WebTables extends TestBase {
              ) {
             System.out.println(each.getText());
 
+        /*    printCells( ) metodu oluşturun //td
+
+○ table body’sinde bulunan toplam hücre(cell) sayısını bulun.
+○ Table body’sinde bulunan hücreleri(cells) konsolda yazdırın.
+
+*/
+            List<WebElement> cell=driver.findElements(By.xpath("//tbody//td"));
+
+            System.out.println(cell.size());
+
+            for (WebElement each2: cell
+                 ) { each2.getText();}
+
+
+            /*
+
+● printColumns( ) metodu oluşturun
+
+○ table body’sinde bulunan toplam sutun(column) sayısını bulun.
+○ Table body’sinde bulunan sutunlari(column) konsolda yazdırın.
+○ 5.column daki elementleri konsolda yazdırın.
+
+         */
+
+            System.out.println(driver.findElements(By.xpath("//tbody//tr[1]//td")).size());
+
+            List<WebElement>column=driver.findElements(By.xpath("//tbody//td"));
+
+            for (WebElement each3:column
+                 ) {
+                System.out.println(each3.getText());}
+
+            List<WebElement>column5=  driver.findElements(By.xpath("//tbody//tr//td[5]"));
+
+            for (WebElement each4:column5
+            ) {
+                System.out.println(each4.getText());}
+
+
+
         }
 
     }
