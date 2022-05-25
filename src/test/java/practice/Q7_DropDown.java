@@ -43,7 +43,5 @@ public class Q7_DropDown extends TestBase {
     //    System.out.println(multic.getOptions().size());
 
 
-
-
     }
 }
