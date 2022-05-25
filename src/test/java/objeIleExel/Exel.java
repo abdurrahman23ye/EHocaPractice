@@ -47,4 +47,5 @@ public class Exel {
    public void setBaskent_Ingilizce(String baskent_Ingilizce) {
       this.baskent_Ingilizce = baskent_Ingilizce;
    }
+
 }
