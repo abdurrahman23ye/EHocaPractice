@@ -24,6 +24,7 @@ public class Q7_DropDown extends TestBase {
 
       WebElement a= driver.findElement(By.xpath("//input[@id='justAnInputBox']"));
 
+
         Select multia=new Select(a);
 
         //-->Task2 Find  all Dropdown Elements on page
